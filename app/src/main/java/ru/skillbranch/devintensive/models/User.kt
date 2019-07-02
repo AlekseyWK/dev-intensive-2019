@@ -10,16 +10,18 @@ data class User (
     var avatar: String?,
     var rating: Int=0,
     var respect: Int=0,
-    val lastVisit: Date? =Date(),
+    var lastVisit: Date? =Date(),
     val isOnline: Boolean = false
 ){
     var introBit:String
 
-    constructor( id: String, firstName: String?, lastName: String?): this(
+    constructor( id: String, firstName: String?, lastName: String?, lastVisit: Date?= Date()): this(
         id=id,
         firstName=firstName,
         lastName=lastName,
-        avatar=null)
+        avatar=null,
+        lastVisit = lastVisit
+    )
     constructor(id: String): this(id,"John", "Doe")
 
 init {
@@ -67,12 +69,12 @@ init {
         var isOnline: Boolean = false)
     {
         fun id(id: String) = apply { this.id = id }
-        fun firstName(firstName: String) = apply { this.firstName = firstName }
-        fun lastName(lastName: String) = apply { this.lastName = lastName }
-        fun avatar(avatar: String) = apply { this.avatar = avatar }
+        fun firstName(firstName: String?) = apply { this.firstName = firstName }
+        fun lastName(lastName: String?) = apply { this.lastName = lastName }
+        fun avatar(avatar: String?) = apply { this.avatar = avatar }
         fun rating(rating: Int) = apply { this.rating = rating }
         fun respect(respect: Int) = apply { this.respect = respect }
-        fun lastVisit(lastVisit: Date) = apply { this.lastVisit = lastVisit }
+        fun lastVisit(lastVisit: Date?) = apply { this.lastVisit = lastVisit }
         fun isOnline(isOnline: Boolean) = apply { this.isOnline = isOnline }
         fun build() = User(id, firstName, lastName, avatar, rating, respect, lastVisit, isOnline)
     }

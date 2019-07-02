@@ -36,11 +36,11 @@ fun Date.add(value:Int, units: TimeUnits=TimeUnits.SECOND): Date {
 
 
 fun Date.humanizeDiff(date: Date =Date()):String {
-    val interval=(Date().time - this.time)/ SECOND
+    val interval=(date.time - this.time)/ SECOND
  return   when (interval) {
      in -45..-1 -> "через несколько секунд"
-     in -75..-45 -> "через минуту "
-     in -45 * 60..-75 -> "через ${-interval / 60} ${inclination(-interval / 60, "минуту", "минуты", "минут")} "
+     in -75..-45 -> "через минуту"
+     in -45 * 60..-75 -> "через ${-interval / 60} ${inclination(-interval / 60, "минуту", "минуты", "минут")}"
      in -75 * 60..-45 * 60 -> "через час"
      in -22 * 60 * 60..-75 * 60 -> "через ${-interval / 60 / 60} ${inclination(
          -interval / 60 / 60,
