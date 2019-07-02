@@ -39,7 +39,8 @@ fun translitchar( char: Char, divider: String=" ")= when (char)
     'ю'-> "Yu"
     'я'-> "Ya"
     ' '->divider
-    else -> char.toString()
+    else -> char.toString().toUpperCase()
+
 }
 
 
@@ -64,7 +65,7 @@ object Utils {
         return buf.toString()
     }
 
-    fun toInintials(firstName: String?, lastName: String?): String? {
+    fun toInitials(firstName: String?, lastName: String?): String? {
         //TODO("")
         val textInitials =(if(firstName== null || firstName.trim().length==0) "" else firstName[0].toString() +
                 if(lastName== null || lastName.trim().length==0) "" else lastName[0].toString()).toUpperCase()
