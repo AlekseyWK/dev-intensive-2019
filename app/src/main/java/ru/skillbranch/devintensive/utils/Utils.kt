@@ -67,8 +67,8 @@ object Utils {
 
     fun toInitials(firstName: String?, lastName: String?): String? {
         //TODO("")
-        val textInitials =(if(firstName== null || firstName.trim().length==0) "" else firstName.trim()[0].toString() +
-                if(lastName== null || lastName.trim().length==0) "" else lastName.trim()[0].toString()).toUpperCase()
+        val textInitials =((if(firstName== null || firstName.trim().length==0) "" else firstName.trim()[0].toString()?:"") +
+                (if(lastName== null || lastName.trim().length==0) "" else lastName.trim()[0].toString()?:"")).toUpperCase()
         return  if(textInitials.length==0) null else textInitials
     }
 
