@@ -38,7 +38,7 @@ fun translitchar( char: Char, divider: String=" ")= when (char)
     'э'-> "E"
     'ю'-> "Yu"
     'я'-> "Ya"
-    ' '->divider
+    ' '->divider 
     else -> char.toString().toUpperCase()
 
 }
