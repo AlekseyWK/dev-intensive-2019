@@ -5,39 +5,39 @@ import kotlin.math.absoluteValue
 
 fun translitchar( char: Char, divider: String=" ")= when (char)
 {
-    'а'-> "a"
-    'б'-> "b"
-    'в'-> "v"
-    'г'-> "g"
-    'д'-> "d"
-    'е'-> "e"
-    'ё'-> "e"
-    'ж'-> "zh"
-    'з'-> "z"
-    'и'-> "i"
-    'й'-> "i"
-    'к'-> "k"
-    'л'-> "l"
-    'м'-> "m"
-    'н'-> "n"
-    'о'-> "o"
-    'п'-> "p"
-    'р'-> "r"
-    'с'-> "s"
-    'т'-> "t"
-    'у'-> "u"
-    'ф'-> "f"
-    'х'-> "h"
-    'ц'-> "c"
-    'ч'-> "ch"
-    'ш'-> "sh"
-    'щ'-> "sh'"
+    'а'-> "A"
+    'б'-> "B"
+    'в'-> "V"
+    'г'-> "G"
+    'д'-> "D"
+    'е'-> "E"
+    'ё'-> "E"
+    'ж'-> "Zh"
+    'з'-> "Z"
+    'и'-> "I"
+    'й'-> "I"
+    'к'-> "K"
+    'л'-> "L"
+    'м'-> "M"
+    'н'-> "N"
+    'о'-> "O"
+    'п'-> "P"
+    'р'-> "R"
+    'с'-> "S"
+    'т'-> "T"
+    'у'-> "U"
+    'ф'-> "F"
+    'х'-> "H"
+    'ц'-> "C"
+    'ч'-> "Ch"
+    'ш'-> "Sh"
+    'щ'-> "Sh'"
     'ъ'-> ""
-    'ы'-> "i"
+    'ы'-> "I"
     'ь'-> ""
-    'э'-> "e"
-    'ю'-> "yu"
-    'я'-> "ya"
+    'э'-> "E"
+    'ю'-> "Yu"
+    'я'-> "Ya"
     ' '->divider
     else -> char.toString()
 }
@@ -55,11 +55,11 @@ object Utils {
 
     fun transliteration(payload: String, divider: String = " "): String {
         //TODO("")
-        var buf: StringBuilder = StringBuilder()
+        val buf = StringBuilder()
         for (char in payload)
 
-            buf.append(if(char.isUpperCase()) translitchar(char.toLowerCase(), divider).toUpperCase()
-                        else translitchar(char, divider))
+            buf.append(if(char.isUpperCase()) translitchar(char.toLowerCase(), divider)
+                        else translitchar(char, divider).toLowerCase())
 
         return buf.toString()
     }
