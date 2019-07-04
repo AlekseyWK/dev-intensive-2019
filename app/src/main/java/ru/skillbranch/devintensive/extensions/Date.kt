@@ -16,6 +16,16 @@ enum class TimeUnits{
     DAY
 }
 
+fun TimeUnits.plural(value:Int): String=
+    when (this) {
+        TimeUnits.SECOND-> "$value ${inclination(value,"секунду","секунды","секунд")}"
+        TimeUnits.MINUTE-> "$value ${inclination(value,"минуту","минуты","минут")}"
+        TimeUnits.HOUR-> "$value ${inclination(value,"час","часа","часов")}"
+        TimeUnits.DAY-> "$value ${inclination(value,"день","дня","дней")}"
+
+    }
+
+
 fun Date.format(pattern:String="HH:mm:ss dd.MM.yy"):String{
     val dateFormat= java.text.SimpleDateFormat(pattern, java.util.Locale("ru"))
     return dateFormat.format( this)

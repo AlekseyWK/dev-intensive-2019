@@ -67,13 +67,13 @@ object Utils {
 
     fun toInitials(firstName: String?, lastName: String?): String? {
         //TODO("")
-        val textInitials =((if(firstName== null || firstName.trim().length==0) "" else firstName.trim()[0].toString()?:"") +
-                (if(lastName== null || lastName.trim().length==0) "" else lastName.trim()[0].toString()?:"")).toUpperCase()
+        val textInitials =((if(firstName== null || firstName.trim().length==0) "" else firstName.trim()[0].toString()) +
+                (if(lastName== null || lastName.trim().length==0) "" else lastName.trim()[0].toString())).toUpperCase()
         return  if(textInitials.length==0) null else textInitials
     }
 
-    fun inclination(interval: Long, value1:String, value2:String, value5:String ): String {
-        return when (interval.absoluteValue%100) {
+    fun inclination(interval: Long, value1:String, value2:String, value5:String ): String =
+         when (interval.absoluteValue%100) {
             in 10..19 -> value5
             else -> when (interval % 10) {
                 1L -> value1
@@ -81,6 +81,7 @@ object Utils {
                 else -> value5
             }
         }
-    }
 
+    fun inclination(interval: Int, value1:String, value2:String, value5:String ): String =
+        inclination(interval.toLong(), value1, value2, value5 )
 }
