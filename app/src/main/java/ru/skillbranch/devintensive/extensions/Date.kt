@@ -40,8 +40,8 @@ fun Date.add(value:Int, units: TimeUnits=TimeUnits.SECOND): Date {
         TimeUnits.HOUR -> value * HOUR
         TimeUnits.DAY -> value * DAY
     }
-    this.time = time
-    return this
+    //this.time = time
+    return Date(time)
 }
 
 
