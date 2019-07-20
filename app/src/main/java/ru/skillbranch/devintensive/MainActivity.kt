@@ -35,12 +35,12 @@ import ru.skillbranch.devintensive.models.Bender
         benderImage=iv_bender
         textTxt=tv_text
         messageEt=et_message
-        sendBtn=iv_setd
+        sendBtn=iv_send
 
         messageEt.setOnEditorActionListener() {v, actionId, event ->
             when(actionId){
                 EditorInfo.IME_ACTION_DONE ->{
-                    this.onClick(iv_setd)
+                    this.onClick(iv_send)
                 true}
                 else -> false
             }
@@ -106,7 +106,7 @@ import ru.skillbranch.devintensive.models.Bender
 
 
      override fun onClick(v: View?) {
-         if (v?.id==iv_setd.id){
+         if (v?.id==iv_send.id){
             val(phrase, color)= benderObj.listenAnswer(messageEt.text.toString())
              messageEt.setText("")
              val (r,g,b) = color
