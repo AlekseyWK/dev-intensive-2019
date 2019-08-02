@@ -1,5 +1,7 @@
 package ru.skillbranch.devintensive.utils
 
+import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
 import java.lang.StringBuilder
 import kotlin.math.absoluteValue
 
@@ -84,4 +86,12 @@ object Utils {
 
     fun inclination(interval: Int, value1:String, value2:String, value5:String ): String =
         inclination(interval.toLong(), value1, value2, value5 )
+
+
+    /* Context*/
+    fun convertPxToDp(cont:Context,px: Int):Int = (px / cont.resources.displayMetrics.density + 0.5f).toInt()
+    fun convertDpToPx(cont:Context, dp: Int): Int =(dp * cont.resources.displayMetrics.density + 0.5f).toInt()
+    fun convertSpToPx(cont:Context, sp: Int): Int = (sp * cont.resources.displayMetrics.scaledDensity).toInt()
+
+
 }

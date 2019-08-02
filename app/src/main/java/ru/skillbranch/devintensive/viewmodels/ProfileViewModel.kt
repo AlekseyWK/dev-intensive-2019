@@ -12,11 +12,15 @@ class ProfileViewModel : ViewModel() {
     private val repository: PreferencesRepository = PreferencesRepository
     private val profileData = MutableLiveData<Profile>()
     private val appTheme = MutableLiveData<Int>()
+    private val repositoryError = MutableLiveData<Boolean>()
+    private val isRepoError = MutableLiveData<Boolean>()
 
     init {
         Log.d("M_ProfileViewModel", "init view model")
         profileData.value = repository.getProfile()
         appTheme.value = repository.getAppTheme()
+        repositoryError.value=repository.getRepositoryError()
+        isRepoError.value = repository.getIsRepoError()
     }
 
     override fun onCleared() {
@@ -27,6 +31,11 @@ class ProfileViewModel : ViewModel() {
     fun getProfileData(): LiveData<Profile> = profileData
 
     fun getTheme(): LiveData<Int> = appTheme
+
+    fun getRepositoryError():LiveData<Boolean> = repositoryError
+
+    fun getIsRepoError():LiveData<Boolean> = isRepoError
+
 
     fun saveProfileData(profile: Profile) {
         repository.saveProfile(profile)
@@ -42,4 +51,35 @@ class ProfileViewModel : ViewModel() {
         }
         repository.saveAppTheme(appTheme.value!!)
     }
+
+    fun saveRepositoryError(err: Boolean)
+    {
+        repository.saveRepositoryError(err)
+        repositoryError.value=err
+    }
+
+    fun saveIsRepoError(err: Boolean)
+    {
+        repository.saveIsRepoError(err)
+        isRepoError.value=err
+    }
+
+
+    fun onRepositoryChanged(repository: String) {
+        saveRepositoryError(isValidateRepository(repository))
+    }
+
+
+    fun onRepoEditCompleted(isError: Boolean) {
+        saveIsRepoError( isError)
+    }
+
+    private fun isValidateRepository(repoText: String): Boolean {
+        val regexStr = "^(https:\\/\\/)?(www\\.)?(github\\.com\\/)(?!(enterprise|features|topics|collections|trending|events|marketplace|pricing|nonprofit|customer-stories|security|login|join)(?=\\/|\$))[a-zA-Z\\d](?:[a-zA-Z\\d]|-(?=[a-zA-Z\\d])){0,38}(\\/)?$"
+        val regex = Regex(regexStr)
+
+        return (repoText.isNotEmpty() && !regex.matches(repoText))
+    }
+
+
 }

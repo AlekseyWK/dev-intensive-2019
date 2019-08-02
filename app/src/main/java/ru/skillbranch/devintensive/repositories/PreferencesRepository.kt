@@ -15,12 +15,24 @@ object PreferencesRepository {
     private const val RATING = "RATING"
     private const val RESPECT = "RESPECT"
     private const val APP_THEME = "APP_THEME"
+    private const val REPOSITORYERROR = "REPOSITORYERROR"
+    private const val ISREPOERROR="ISREPOERROR"
 
     private val prefs: SharedPreferences by lazy {
         val ctx = App.applicationContext()
 
         PreferenceManager.getDefaultSharedPreferences(ctx)
     }
+
+    fun getRepositoryError():Boolean= prefs.getBoolean(REPOSITORYERROR, false)
+    fun saveRepositoryError(err:Boolean){
+        putValue(REPOSITORYERROR to err)
+    }
+    fun getIsRepoError():Boolean= prefs.getBoolean(ISREPOERROR, false)
+    fun saveIsRepoError(err:Boolean){
+        putValue(ISREPOERROR to err)
+    }
+
     fun saveAppTheme(theme:Int){
 putValue(APP_THEME to theme)
     }
